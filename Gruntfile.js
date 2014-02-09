@@ -16,28 +16,7 @@ module.exports = function(grunt) {
 				},
 				jshint : {
 					options : {
-						"boss" : true,
-						"curly" : true,
-						"eqeqeq" : true,
-						"eqnull" : true,
-						"expr" : true,
-						"immed" : true,
-						"noarg" : true,
-						"onevar" : true,
-						"quotmark" : "double",
-						"smarttabs" : true,
-						"trailing" : true,
-						"undef" : true,
-						"unused" : false,
-
-						"browser" : true,
-						"es3" : true,
-						"jquery" : true
-					},
-					globals : {
-						"exports" : true,
-						"define" : false,
-						"Globalize" : false
+						jshintrc: true
 					},
 					files : [ "src/**/*.js", "test/**/*.js" ]
 

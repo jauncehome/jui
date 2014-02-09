@@ -16,18 +16,30 @@ module.exports = function(grunt) {
 				},
 				jshint : {
 					options : {
-						curly : true,
-						eqeqeq : true,
-						newcap : true,
-						noarg : true,
-						sub : true,
-						undef : true,
-						boss : true,
-						node : true
+						"boss" : true,
+						"curly" : true,
+						"eqeqeq" : true,
+						"eqnull" : true,
+						"expr" : true,
+						"immed" : true,
+						"noarg" : true,
+						"onevar" : true,
+						"quotmark" : "double",
+						"smarttabs" : true,
+						"trailing" : true,
+						"undef" : true,
+						"unused" : false,
+
+						"browser" : true,
+						"es3" : true,
+						"jquery" : true
 					},
 					globals : {
-						exports : true
-					}
+						"exports" : true,
+						"define" : false,
+						"Globalize" : false
+					},
+					files : [ "src/**/*.js", "test/**/*.js" ]
 
 				},
 				less : {
@@ -63,7 +75,7 @@ module.exports = function(grunt) {
 					},
 					compress : {
 						files : {
-							'build/themes/base/<%= pkg.name %>.css' : [ "build/themes/base/<%= pkg.name %>.css" ]
+							"build/themes/base/<%= pkg.name %>.css" : [ "build/themes/base/<%= pkg.name %>.css" ]
 						}
 					}
 				},
@@ -80,18 +92,18 @@ module.exports = function(grunt) {
 					}
 				},
 				qunit : {
-					files : [ 'test/**/*.html' ]
+					files : [ "test/**/*.html" ]
 				}
 
 			});
 	grunt.loadNpmTasks("grunt-contrib-concat");
-	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 	grunt.loadNpmTasks("grunt-contrib-cssmin");
 	grunt.loadNpmTasks("grunt-contrib-qunit");
 	grunt.loadNpmTasks("grunt-contrib-csslint");
 	grunt.loadNpmTasks("grunt-jscs-checker");
-	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks("grunt-contrib-less");
 	grunt.loadNpmTasks("grunt-html");
 
 	grunt.registerTask("clean", function() {
@@ -100,7 +112,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask("default", [ "css", "js", "html", "test" ]);
 	grunt.registerTask("css", [ "less", "csslint", "cssmin" ]);
-	grunt.registerTask("js", [ "jshint", "uglify" ]);
+	grunt.registerTask("js", [ "jshint", "concat", "uglify" ]);
 	grunt.registerTask("html", [ "htmllint" ]);
 	grunt.registerTask("test", [ "qunit" ]);
 

@@ -31,29 +31,39 @@ module.exports = function(grunt) {
 
 				},
 				less : {
-					development : {
+					base : {
 						options : {
-							paths : [ "assets/css" ]
-						},
-						files : {
-							"path/to/result.css" : "path/to/source.less"
-						}
-					},
-					production : {
-						options : {
-							paths : [ "assets/css" ],
+							paths : [ "themes/base/css" ],
 							cleancss : true
 						},
 						files : {
-							"path/to/result.css" : "path/to/source.less"
+							"build/css/<%= pkg.name %>.css" : "build/css/<%= pkg.name %>.less"
 						}
 					}
 				},
 				csslint : {
 					base_theme : {
-						src : "themes/base/*.css",
+						src : "build/themes/base/*.css",
 						options : {
-							csslintrc : ".csslintrc"
+							"adjoining-classes" : false,
+							"box-model" : false,
+							"compatible-vendor-prefixes" : false,
+							"duplicate-background-images" : false,
+							"import" : false,
+							"important" : false,
+							"outline-none" : false,
+							"overqualified-elements" : false,
+							"text-indent" : false
+						}
+					}
+				},
+				cssmin : {
+					options : {
+						keepSpecialComments : 0
+					},
+					compress : {
+						files : {
+							'build/themes/base/<%= pkg.name %>.css' : [ "build/themes/base/<%= pkg.name %>.css" ]
 						}
 					}
 				},
@@ -70,7 +80,7 @@ module.exports = function(grunt) {
 					}
 				},
 				qunit : {
-					files : [ 'test/*.html' ]
+					files : [ 'test/**/*.html' ]
 				}
 
 			});
